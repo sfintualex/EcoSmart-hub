@@ -7,26 +7,31 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f8ff;
             margin: 0;
             padding: 0;
+            
+            color: #333;
         }
         header {
-            background-color: #4CAF50;
+            background-color: rgba(76, 175, 80, 0.9);
             color: white;
             text-align: center;
             padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
         .container {
             max-width: 800px;
             margin: 20px auto;
             padding: 20px;
-            background: white;
+            background: rgba(255, 255, 255, 0.9);
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         .result {
             margin-top: 20px;
+        }
+        p {
+            font-size: 16px;
         }
     </style>
 </head>
@@ -48,8 +53,17 @@
                 if (data.error) {
                     resultDiv.innerHTML = `<p>${data.error}</p>`;
                 } else {
-                    resultDiv.innerHTML = `<pre>${JSON.stringify(data.consum, null, 2)}</pre>`;
+                    let consumHtml = '<ul>';
+                    data.consum.forEach(entry => {
+                        consumHtml += `<li>Data: ${entry.data}, Energie: ${entry.energie} kWh, Apă: ${entry.apa} litri, Gaze: ${entry.gaze} mc</li>`;
+                    });
+                    consumHtml += '</ul>';
+                    resultDiv.innerHTML = consumHtml;
                 }
+            })
+            .catch(error => {
+                const resultDiv = document.getElementById('result');
+                resultDiv.innerHTML = `<p>Eroare la încărcarea datelor: ${error.message}</p>`;
             });
     </script>
 </body>
