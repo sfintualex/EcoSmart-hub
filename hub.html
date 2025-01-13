@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoSmart Hub</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            text-align: center;
+        }
+        .options {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .option {
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #e7f9e7;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            text-align: center;
+            width: 150px;
+        }
+        .option:hover {
+            background-color: #d4e8d4;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>EcoSmart Hub</h1>
+    </header>
+    <div class="container">
+        <h2>Alegeți o opțiune</h2>
+        <div class="options">
+            <div class="option" onclick="navigate('consum')">Consum</div>
+            <div class="option" onclick="navigate('adauga_consum')">Introducere Consum</div>
+            <div class="option" onclick="navigate('recomandari')">Recomandări</div>
+        </div>
+    </div>
+    <script>
+        function navigate(page) {
+            const urlParams = new URLSearchParams(window.location.search);
+            const username = urlParams.get('username');
+            window.location.href = `/${page}.html?username=${username}`;
+        }
+    </script>
+</body>
+</html>

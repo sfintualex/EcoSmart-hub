@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introducere Consum</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Introducere Consum</h1>
+    </header>
+    <div class="container">
+        <h2>Adăugați un nou consum</h2>
+        <form onsubmit="submitConsum(event)">
+            <input type="number" id="energie" placeholder="Energie (kWh)" required>
+            <input type="number" id="apa" placeholder="Apă (litri)" required>
+            <input type="number" id="gaze" placeholder="Gaze (mc)" required>
+            <button type="submit">Adaugă</button>
+        </form>
+    </div>
+    <script>
+        function submitConsum(event) {
+            event.preventDefault();
+            const username = new URLSearchParams(window.location.search).get('username');
+            const energie = document.getElementById('energie').value;
+            const apa = document.getElementById('apa').value;
+            const gaze = document.getElementById('gaze').value;
+            fetch(`/api/consum/${username}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ energie, apa, gaze })
+            }).then(response => response.json())
+              .then(data => alert(data.mesaj));
+        }
+    </script>
+</body>
+</html>

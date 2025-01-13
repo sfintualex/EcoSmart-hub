@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoSmart Hub</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bun venit la EcoSmart Hub</h1>
+    </header>
+    <div class="container">
+        <h2>Introduceți numele de utilizator</h2>
+        <input type="text" id="username" placeholder="Nume utilizator">
+        <button onclick="redirectToHub()">Continuă</button>
+    </div>
+    <script>
+        function redirectToHub() {
+            const username = document.getElementById('username').value;
+            if (!username) {
+                alert('Introduceți un nume de utilizator!');
+                return;
+            }
+            window.location.href = `/hub.html?username=${username}`;
+        }
+    </script>
+</body>
+</html>
