@@ -3,7 +3,6 @@ from flask import Flask, jsonify, request, send_from_directory
 
 app = Flask(__name__)
 
-# Simulăm o bază de date pentru 3 utilizatori
 users_data = {
     "user1": {
         "consum": [
@@ -21,32 +20,26 @@ users_data = {
     }
 }
 
-# Ruta pentru servirea paginii HTML principale
 @app.route("/", methods=["GET"])
 def index():
     return send_from_directory(".", "index.html")
 
-# Ruta pentru servirea paginii hub
 @app.route("/hub.html", methods=["GET"])
 def hub():
     return send_from_directory(".", "hub.html")
 
-# Ruta pentru servirea paginii consum
 @app.route("/consum.html", methods=["GET"])
 def consum_page():
     return send_from_directory(".", "consum.html")
 
-# Ruta pentru servirea paginii adaugă consum
 @app.route("/adauga_consum.html", methods=["GET"])
 def adauga_consum_page():
     return send_from_directory(".", "adauga_consum.html")
 
-# Ruta pentru servirea paginii recomandări
 @app.route("/recomandari.html", methods=["GET"])
 def recomandari_page():
     return send_from_directory(".", "recomandari.html")
 
-# Ruta pentru obținerea consumului unui utilizator
 @app.route("/api/consum/<username>", methods=["GET"])
 def get_consum(username):
     user = users_data.get(username)
@@ -54,7 +47,6 @@ def get_consum(username):
         return jsonify({"error": "Utilizatorul nu există."}), 404
     return jsonify({"consum": user["consum"]})
 
-# Ruta pentru adăugarea unui nou consum
 @app.route("/api/consum/<username>", methods=["POST"])
 def add_consum(username):
     user = users_data.get(username)
@@ -74,7 +66,6 @@ def add_consum(username):
     user["consum"].append(new_entry)
     return jsonify({"mesaj": "Consum adăugat cu succes."})
 
-# Ruta pentru obținerea recomandărilor unui utilizator
 @app.route("/api/recomandari/<username>", methods=["GET"])
 def get_recomandari(username):
     user = users_data.get(username)
