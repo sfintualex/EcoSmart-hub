@@ -47,11 +47,9 @@
         <ul id="recomandari-list"></ul>
     </div>
     <script>
-        // Preluare username din URL
         const urlParams = new URLSearchParams(window.location.search);
         const username = urlParams.get('username');
 
-        // Cerere către API pentru recomandări
         fetch(`/api/recomandari/${username}`)
             .then(response => response.json())
             .then(data => {
